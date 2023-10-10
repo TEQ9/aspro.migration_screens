@@ -1,0 +1,16 @@
+[
+    {
+        "case": "CaseName",
+        "link_new": "https://allcorp3-try.ru/",
+        "link_old": "https://medc.allcorp3-try.ru/",
+        "selector_new": ".sections-list",
+        "selector_old": ".sections-list"
+    },
+    {
+        "case": "CaseName2",
+        "link_new": "https://allcorp3-try.ru/",
+        "link_old": "https://medc.allcorp3-try.ru/",
+        "selector_new": "",
+        "selector_old": ""
+    }
+]
