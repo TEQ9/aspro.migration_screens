@@ -17,24 +17,20 @@ async function main() {
         try {
             app.Log(`Новый сайт. Перехожу по URL ${database[i].link_new}`, true);
             await page.goto(database[i].link_new, {waitUntil: 'load', timeout: '60000'});
-            await page.evaluate(() => {
-                window.scrollBy({
-                    left: 0,
-                    top: 50000,
-                    behavior: "smooth"});
-            });
-            await app.Delay(500);
             let selector = database[i].selector_new ? database[i].selector_new : false;
             if (!selector) {
                 newCounter++;
                 app.Log(`Делаю скриншот страницы, по порядку - ${newCounter}`);
+                await app.Delay(1000);
                 await page.screenshot({
-                    path: `${newPath}${newCounter}.jpg`
+                    path: `${newPath}${newCounter}.jpg`,
+                    fullPage: true
                 })
             } else {
                 newCounter++;
                 app.Log(`Делаю скриншот элемента, по порядку - ${newCounter}`);
                 let element = await page.$(selector);
+                await app.Delay(1000);
                 await element.screenshot({
                     path: `${newPath}${newCounter}.jpg`
                 })
@@ -45,24 +41,20 @@ async function main() {
         try {
             app.Log(`Старый сайт. Перехожу по URL ${database[i].link_old}`, true);
             await page.goto(database[i].link_old, {waitUntil: 'load', timeout: '60000'});
-            await page.evaluate(() => {
-                window.scrollBy({
-                    left: 0,
-                    top: 50000,
-                    behavior: "smooth"});
-            });
-            await app.Delay(500);
             let selector = database[i].selector_old ? database[i].selector_old : false;
             if (!selector) {
                 oldCounter++;
                 app.Log(`Делаю скриншот страницы, по порядку - ${oldCounter}`);
+                await app.Delay(1000);
                 await page.screenshot({
-                    path: `${oldPath}${oldCounter}.jpg`
-                })
+                    path: `${oldPath}${oldCounter}.jpg`,
+                    fullPage: true
+                });
             } else {
                 oldCounter++;
                 app.Log(`Делаю скриншот элемента, по порядку - ${oldCounter}`);
                 let element = await page.$(selector);
+                await app.Delay(1000);
                 await element.screenshot({
                     path: `${oldPath}${oldCounter}.jpg`
                 })
